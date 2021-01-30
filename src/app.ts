@@ -60,7 +60,7 @@ async function startService(): Promise<void> {
         //     console.log(`Listening on port ${8080} `);
         // });
          app.listen(3000,()=>{
-         console.log('server connected on port 3000');
+            console.log('server connected on port 3000');
     
 })
         // Setup connection to DB
