@@ -1,17 +1,32 @@
-import { model } from "mongoose";
+/**
+ * Schema for user
+ */
+import { Schema } from "mongoose";
 
 const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const userSchema:Schema = new Schema({
 
-const userSchema = new Schema({
-    firstname: {type:String},
-    lastname: {type:String },
-    email: { type:String},
-    phone: { type:String},
-    rentedBooks: {type:Array},
-    address: {type:String }
+    firstname: {
+        type: String
+    },
+    lastname: {
+        type: String 
+    },
+    email: { 
+        type: String
+    },
+    phone: { 
+        type: String
+    },
+    rentedBooks: {
+        type: [String]
+    },
+    address: {
+        type: String
+    }
 });
 
+const User=mongoose.model("User",userSchema);
 
-export default model('User',userSchema);
+export default User;

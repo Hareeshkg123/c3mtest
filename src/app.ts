@@ -1,6 +1,6 @@
 
 /**
- * Starts the dummy node api services microservice
+ * Starts the  api services 
  */
 
 import 'babel-polyfill';

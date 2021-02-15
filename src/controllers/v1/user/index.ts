@@ -1,5 +1,5 @@
 /**
- * Controller for all dummy APIs
+ * Controller for  APIs
  */
 
 import { Router, Request, Response, NextFunction } from 'express';
