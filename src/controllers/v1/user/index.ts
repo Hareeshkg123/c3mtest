@@ -1,5 +1,5 @@
 /**
- * Controller for  APIs
+ * Controller for  User APIs
  */
 
 import { Router, Request, Response, NextFunction } from 'express';
@@ -10,7 +10,7 @@ import { UserService } from '../../../services/user';
 const router: Router = Router();
 
 /**
- * Get dummy list
+ 
  * @param {Request} req
  * @param {Response} res
  * @param {NextFunction} next
