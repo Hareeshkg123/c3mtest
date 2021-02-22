@@ -11,7 +11,7 @@ class UserService {
     /**
      * @returns {Promise<string[]>}
      */
-    public static async get( email: String ):Promise<any>{
+    public static async get( email: String ):Promise<data>{
 
         //NOTE: Add validators and types as required.
         //      Refer playbooks API service for examples
