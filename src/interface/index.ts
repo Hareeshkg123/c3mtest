@@ -6,7 +6,7 @@ export interface data{
     name: string,
     phone: string,
     email: string,
-    rentedBooks: Array<bookType>,
+    rentedBooks?: Array<bookType>,
     address?:string,
     country?:string 
 }

@@ -9,8 +9,7 @@ import { UserService } from '../../../services/user';
 
 const router: Router = Router();
 
-/**
- 
+/** 
  * @param {Request} req
  * @param {Response} res
  * @param {NextFunction} next
@@ -20,6 +19,8 @@ router.get('/:email', async (req: Request, res: Response, next: NextFunction) =>
     try {
         res.json(await UserService.get(email));
     } catch (err) {
+        console.log(err)
+        res.status(404).json({Error:err.message});
         next(err);
     }
 });
