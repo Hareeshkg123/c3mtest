@@ -14,13 +14,33 @@ class UserService {
      */
     public static async get( email: String ): Promise<data> {
 
-        const user:userType = await User.findOne( { email: email });
+        const user:userType = await User.findOne(
+            {
+                email: email
+            }
+        );
         if (!user) {
             throw new Error('user not found');
         }
-        const books = Book.find({ bookId: { $in: user.rentedBooks } },
-        { isbn: 1,title: 1,subtitle: 1,author: 1,_id: 0 });        
-        const addresses = Address.findOne({ addressId: user.address });
+        const books = Book.find(
+            {
+                bookId: {
+                    $in: user.rentedBooks
+                }
+            },
+            {
+                isbn: 1,
+                title: 1,
+                subtitle: 1,
+                author: 1,
+                _id: 0
+            }
+        );        
+        const addresses = Address.findOne(
+            { 
+                addressId: user.address
+            }
+        );
         const userData = await Promise.all([ books,addresses ]);
         const rentedBooks: bookType[] = userData[0];
         const address: addressType = userData[1];
