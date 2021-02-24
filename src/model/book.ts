@@ -4,9 +4,7 @@
 import { Schema } from "mongoose";
 
 const mongoose = require('mongoose');
-
-const  bookSchema: Schema = new Schema({
-    
+const  bookSchema: Schema = new Schema({    
     bookId: {
         type: String
     },
@@ -37,9 +35,7 @@ const  bookSchema: Schema = new Schema({
     website: {
         type: String
     }
-
 });
-
-const Book= mongoose.model( "Book" ,bookSchema);
+const Book = mongoose.model( "Book" ,bookSchema);
 
 export default Book;

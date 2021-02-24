@@ -19,8 +19,7 @@ router.get('/:email', async (req: Request, res: Response, next: NextFunction) =>
     try {
         res.json(await UserService.get(email));
     } catch (err) {
-        console.log(err)
-        res.status(404).json({Error:err.message});
+        res.json({Error:err.message});
         next(err);
     }
 });

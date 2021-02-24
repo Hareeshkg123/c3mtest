@@ -2,27 +2,24 @@
  * Schema for user
  */
 import { Schema } from "mongoose";
-import { userType } from "../Interface";
 
 const mongoose = require('mongoose');
-
-const userSchema:Schema = new Schema({
-
+const userSchema: Schema = new Schema({
     firstname: {
         type: String,
-        required:true
+        required: true
     },
     lastname: {
         type: String,
-        required:true 
+        required: true 
     },
     email: { 
         type: String,
-        required:true
+        required: true
     },
     phone: { 
         type: String,
-        required:true
+        required: true
     },
     rentedBooks: {
         type: [String]
@@ -31,7 +28,6 @@ const userSchema:Schema = new Schema({
         type: String
     }
 });
-
-const User= mongoose.model( "User" , userSchema);
+const User = mongoose.model( "User" , userSchema);
 
 export default User;
