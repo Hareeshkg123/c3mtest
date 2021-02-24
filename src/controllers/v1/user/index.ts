@@ -3,9 +3,8 @@
  */
 
 import { Router, Request, Response, NextFunction } from 'express';
+
 import { UserService } from '../../../services/user';
-
-
 
 const router: Router = Router();
 

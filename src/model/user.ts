@@ -4,6 +4,7 @@
 import { Schema } from "mongoose";
 
 const mongoose = require('mongoose');
+
 const userSchema: Schema = new Schema({
     firstname: {
         type: String,

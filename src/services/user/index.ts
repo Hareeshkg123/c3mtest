@@ -3,7 +3,8 @@
  */
 import User from './../../model/user';
 import Address from './../../model/address';
-import Book  from './../../model/book';
+import Book from './../../model/book';
+
 import { data,addressType,userType,bookType } from './../../Interface';
 
 class UserService {

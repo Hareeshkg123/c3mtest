@@ -59,7 +59,7 @@ async function startService(): Promise<void> {
         // https.createServer(httpsOptions, app).listen(8000, () => {
         //     console.log(`Listening on port ${8080} `);
         // });
-         app.listen(3000,()=>{
+         app.listen(3000,()=> {
             console.log('server connected on port 3000');
     
 })
