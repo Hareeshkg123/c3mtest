@@ -4,7 +4,7 @@
 import User from './../../model/user';
 import Address from './../../model/address';
 import Book  from './../../model/book';
-import { data,addressType,userType, bookType } from './../../Interface';
+import { data,addressType,userType,bookType } from './../../Interface';
 
 class UserService {
 
@@ -16,7 +16,7 @@ class UserService {
         //NOTE: Add validators and types as required.
         //      Refer playbooks API service for examples
         const user:userType = await User.findOne( { email: email });
-        if(!user) {
+        if (!user) {
             throw new Error('user not found');
         }
         const books = Book.find({ bookId:{ $in: user.rentedBooks } },
@@ -30,18 +30,18 @@ class UserService {
             phone: user.phone,
             email: user.email,
         }
-        if(!address) {
+        if (!address) {
             return {
                 ...userDetails,
                 rentedBooks: rentedBooks
-            }
+            };
         }
-        if(rentedBooks.length==0) {
+        if (rentedBooks.length==0) {
             return {
                 ...userDetails,
                 address: `${ address.house },${ address.street }, ${ address.city } - ${ address.postalCode }`,
                 country: address.country            
-            }
+            };
         }
         userDetails.rentedBooks = rentedBooks;
         userDetails.address = `${ address.house },${ address.street }, ${ address.city } - ${ address.postalCode }`;
