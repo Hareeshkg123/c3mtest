@@ -91,8 +91,7 @@ export default class CgmDB {
             //this.printDebugInfo(mongoDB);
             return mongoDB;
         }).catch((err: any) => {
-                    console.log(err);
-                    
+                    console.log(err);        
             throw err;
         });
     }
