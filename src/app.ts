@@ -71,7 +71,7 @@ async function startService(): Promise<void> {
             process.exit(-1);
         }
     } catch(err) {
-        console.error(`Error starting dummy node api services microservice`);
+        console.error(`Error starting user api services`);
         process.exit(-1);
     }
 }

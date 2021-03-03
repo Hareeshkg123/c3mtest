@@ -1,28 +1,28 @@
 /**
  * Service class and methods for user APIs
  */
-import User from './../../model/user';
-import Address from './../../model/address';
-import Book from './../../model/book';
+import AddressModel from './../../model/address';
+import BooksModel from './../../model/book';
+import UsersModel from './../../model/user';
 
-import { data,addressType,userType,bookType } from './../../Interface';
+import { AddressType, BookType, Data, UserType } from './../../Interface';
 
 class UserService {
-
-    /**
-     * @returns {Promise<string[]>}
-     */
-    public static async get( email: String ): Promise<data> {
-
-        const user:userType = await User.findOne(
+  /**
+   * Method to get the user details
+   * @param  { string } email
+   * @returns { Promise< Data > }
+   */
+    public static async getUserDetails( email: String ): Promise<Data> {
+        const user: UserType = await UsersModel.findOne(
             {
                 email: email
             }
         );
         if (!user) {
-            throw new Error('user not found');
+            throw new Error('User not found');
         }
-        const books = Book.find(
+        const books = BooksModel.find(
             {
                 bookId: {
                     $in: user.rentedBooks
@@ -35,36 +35,27 @@ class UserService {
                 author: 1,
                 _id: 0
             }
-        );        
-        const addresses = Address.findOne(
+        );     
+        const addressDetails = AddressModel.findOne(
             { 
                 addressId: user.address
             }
         );
-        const userData = await Promise.all([ books,addresses ]);
-        const rentedBooks: bookType[] = userData[0];
-        const address: addressType = userData[1];
-        const userDetails: data = {
-            name: user.firstname + user.lastname,
+        const result = await Promise.all([books,addressDetails]);
+        const rentedBooks: BookType[] = result[0];
+        const address: AddressType = result[1];
+        const userDetails: Data = {
+            name: `${ user.firstname } ${ user.lastname }`,
             phone: user.phone,
-            email: user.email,
+            email: user.email
         }
-        if (!address) {
-            return {
-                ...userDetails,
-                rentedBooks: rentedBooks
-            };
+        if (address) {
+            userDetails.address = `${ address.house },${ address.street }, ${ address.city } - ${ address.postalCode }`;
+            userDetails.country = address.country;
         }
-        if (rentedBooks.length==0) {
-            return {
-                ...userDetails,
-                address: `${ address.house },${ address.street }, ${ address.city } - ${ address.postalCode }`,
-                country: address.country            
-            };
+        if (rentedBooks.length) {
+            userDetails.rentedBooks = rentedBooks;
         }
-        userDetails.rentedBooks = rentedBooks;
-        userDetails.address = `${ address.house },${ address.street }, ${ address.city } - ${ address.postalCode }`;
-        userDetails.country = address.country;
         return userDetails;
     }
 }

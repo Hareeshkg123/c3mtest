@@ -2,32 +2,32 @@
  * types
  */
 
-export interface data{  
+export interface Data{  
     name: string,
     phone: string,
     email: string,
-    rentedBooks?: Array<bookType>,
+    rentedBooks?: Array<BookType>,
     address?: string,
     country?: string 
 }
 
-export interface userType{
+export interface UserType{
     firstname: string,
     lastname: string,
     email: string,
     phone: string,
-    rentedBooks: Array<bookType>,
+    rentedBooks: Array<BookType>,
     address: string
 }
 
-export interface bookType{
+export interface BookType{
     isbn: string,
     author: string,
     title: string,
     subtitle: string 
 }
 
-export interface addressType{    
+export interface AddressType{    
     street: string,
     postalCode: string,
     city: string,

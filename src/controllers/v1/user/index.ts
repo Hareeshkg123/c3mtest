@@ -16,9 +16,9 @@ const router: Router = Router();
 router.get('/:email', async (req: Request, res: Response, next: NextFunction) => {
     const { email } = req.params;
     try {
-        res.json(await UserService.get(email));
+        res.json(await UserService.getUserDetails(email));
     } catch (err) {
-        res.json({Error:err.message});
+        res.json({ Error: err.message });
         next(err);
     }
 });
