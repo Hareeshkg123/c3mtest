@@ -13,7 +13,7 @@ class UserService {
    * @param  { string } email
    * @returns { Promise< Data > }
    */
-    public static async getUserDetails( email: String ): Promise<Data> {
+    public static async getUserDetails(email: String): Promise<Data> {
         const user: UserType = await UsersModel.findOne(
             {
                 email: email

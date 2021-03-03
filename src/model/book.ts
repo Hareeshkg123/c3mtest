@@ -37,6 +37,6 @@ const  bookSchema: Schema = new Schema({
         type: String
     }
 });
-const Book = mongoose.model( "Book" ,bookSchema);
+const Book = mongoose.model('Book', bookSchema);
 
 export default Book;
