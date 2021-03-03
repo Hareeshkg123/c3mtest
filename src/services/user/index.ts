@@ -36,12 +36,12 @@ class UserService {
                 _id: 0
             }
         );     
-        const addressDetails = AddressModel.findOne(
+        const addressData = AddressModel.findOne(
             { 
                 addressId: user.address
             }
         );
-        const result = await Promise.all([books,addressDetails]);
+        const result = await Promise.all([books,addressData]);
         const rentedBooks: BookType[] = result[0];
         const address: AddressType = result[1];
         const userDetails: Data = {
