@@ -16,7 +16,7 @@ export interface UserType{
     lastname: string,
     email: string,
     phone: string,
-    rentedBooks: Array<BookType>,
+    rentedBooks: Array<string>,
     address: string
 }
 

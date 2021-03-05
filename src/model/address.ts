@@ -1,9 +1,7 @@
 /**
  * Schema for address
  */
-import { Schema } from "mongoose";
-
-const mongoose = require('mongoose');
+import { Schema, model } from "mongoose";
 
 const addressSchema: Schema = new Schema({   
     addressId: {
@@ -25,6 +23,5 @@ const addressSchema: Schema = new Schema({
          type: String 
     },
 });
-const Address = mongoose.model('Address', addressSchema);
 
-export default Address;
+export default model('Address', addressSchema);

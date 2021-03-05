@@ -13,35 +13,17 @@ class UserService {
    * @param  { string } email
    * @returns { Promise< Data > }
    */
+  
     public static async getUserDetails(email: String): Promise<Data> {
         const user: UserType = await UsersModel.findOne(
             {
                 email: email
             }
-        );
+        ).lean();
         if (!user) {
             throw new Error('User not found');
         }
-        const books = BooksModel.find(
-            {
-                bookId: {
-                    $in: user.rentedBooks
-                }
-            },
-            {
-                isbn: 1,
-                title: 1,
-                subtitle: 1,
-                author: 1,
-                _id: 0
-            }
-        );     
-        const addressData = AddressModel.findOne(
-            { 
-                addressId: user.address
-            }
-        );
-        const result = await Promise.all([books,addressData]);
+        const result: [BookType[], AddressType] = await Promise.all([UserService.getBookData(user.rentedBooks), UserService.getAddressData(user.address)]);
         const rentedBooks: BookType[] = result[0];
         const address: AddressType = result[1];
         const userDetails: Data = {
@@ -53,10 +35,37 @@ class UserService {
             userDetails.address = `${ address.house },${ address.street }, ${ address.city } - ${ address.postalCode }`;
             userDetails.country = address.country;
         }
-        if (rentedBooks.length) {
+        if (rentedBooks.length>0) {
             userDetails.rentedBooks = rentedBooks;
         }
         return userDetails;
+    }
+
+    public static async getBookData(rentedBooks: String[]): Promise<BookType[]> {
+        const bookData: BookType[] = await BooksModel.find(
+            {
+                bookId: {
+                    $in: rentedBooks
+                }
+            },
+            {
+                isbn: 1,
+                title: 1,
+                subtitle: 1,
+                author: 1,
+                _id: 0
+            }
+        ).lean();
+        return bookData;
+    }
+
+    public static async getAddressData(address: String): Promise<AddressType> {
+        const addressData: AddressType = await AddressModel.findOne(
+            { 
+                addressId: address
+            }
+        ).lean();
+        return addressData;
     }
 }
 

@@ -19,7 +19,6 @@ router.get('/:email', async (req: Request, res: Response, next: NextFunction) =>
         res.json(await UserService.getUserDetails(email));
     } catch (err) {
         res.json({ Error: err.message });
-        next(err);
     }
 });
 
