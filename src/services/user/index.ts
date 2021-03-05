@@ -4,7 +4,6 @@
 import AddressModel from './../../model/address';
 import BooksModel from './../../model/book';
 import UsersModel from './../../model/user';
-
 import { AddressType, BookType, Data, UserType } from './../../Interface';
 
 class UserService {
@@ -13,8 +12,7 @@ class UserService {
    * @param  { string } email
    * @returns { Promise< Data > }
    */
-  
-    public static async getUserDetails(email: String): Promise<Data> {
+    public static async getUserDetails(email: string): Promise<Data> {
         const user: UserType = await UsersModel.findOne(
             {
                 email: email
@@ -42,8 +40,12 @@ class UserService {
         }
         return userDetails;
     }
-
-    public static async getBookData(rentedBooks: String[]): Promise<BookType[]> {
+  /**
+   * Method to get the Book data
+   * @param  { string[] } rentedBooks
+   * @returns { Promise< BookType[] > }
+   */
+    public static async getBookData(rentedBooks: string[]): Promise<BookType[]> {
         const bookData: BookType[] = await BooksModel.find(
             {
                 bookId: {
@@ -60,8 +62,12 @@ class UserService {
         ).lean();
         return bookData;
     }
-
-    public static async getAddressData(address: String): Promise<AddressType> {
+  /**
+   * Method to get the Book data
+   * @param  { string } address
+   * @returns { Promise< AddressType > }
+   */
+    public static async getAddressData(address: string): Promise<AddressType> {
         const addressData: AddressType = await AddressModel.findOne(
             { 
                 addressId: address
