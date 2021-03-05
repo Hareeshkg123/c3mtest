@@ -7,6 +7,7 @@ import UsersModel from './../../model/user';
 import { AddressType, BookType, Data, UserType } from './../../Interface';
 
 class UserService {
+    
   /**
    * Method to get the user details
    * @param  { string } email
@@ -40,6 +41,7 @@ class UserService {
         }
         return userDetails;
     }
+
   /**
    * Method to get the Book data
    * @param  { string[] } rentedBooks
@@ -62,6 +64,7 @@ class UserService {
         ).lean();
         return bookData;
     }
+
   /**
    * Method to get the Book data
    * @param  { string } address
