@@ -23,7 +23,9 @@ class UserService {
         if (!user) {
             throw new Error('User not found');
         }
-        const result: [BookType[], AddressType] = await Promise.all([UserService.getBookData(user.rentedBooks), UserService.getAddressData(user.address)]);
+        const userBooks: Promise<BookType[]> = UserService.getBookData(user.rentedBooks);
+        const userAddress: Promise<AddressType> = UserService.getAddressData(user.address);
+        const result: [BookType[], AddressType] = await Promise.all([userBooks, userAddress]);
         const rentedBooks: BookType[] = result[0];
         const address: AddressType = result[1];
         const userDetails: Data = {
