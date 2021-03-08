@@ -48,7 +48,7 @@ class UserService {
    * @returns { Promise< BookType[] > }
    */
     public static async getBookData(rentedBooks: string[]): Promise<BookType[]> {
-        const bookData: BookType[] = await BooksModel.find(
+        return BooksModel.find(
             {
                 bookId: {
                     $in: rentedBooks
@@ -62,7 +62,6 @@ class UserService {
                 _id: 0
             }
         ).lean();
-        return bookData;
     }
 
   /**
@@ -71,13 +70,13 @@ class UserService {
    * @returns { Promise< AddressType > }
    */
     public static async getAddressData(address: string): Promise<AddressType> {
-        const addressData: AddressType = await AddressModel.findOne(
+        return AddressModel.findOne(
             { 
                 addressId: address
             }
         ).lean();
-        return addressData;
     }
 }
 
-export { UserService };
+export { UserService }
+
