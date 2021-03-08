@@ -1,7 +1,6 @@
 /**
  * Schema for books
  */
-import { required } from "@hapi/joi";
 import { Schema, model } from "mongoose";
 
 const  bookSchema: Schema = new Schema({    
