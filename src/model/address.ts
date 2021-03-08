@@ -5,8 +5,7 @@ import { Schema, model } from "mongoose";
 
 const addressSchema: Schema = new Schema({   
     addressId: {
-        type: String,
-        required:true
+        type: String
     },
     street: {
         type: String

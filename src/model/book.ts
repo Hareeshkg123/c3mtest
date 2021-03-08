@@ -5,8 +5,7 @@ import { Schema, model } from "mongoose";
 
 const  bookSchema: Schema = new Schema({    
     bookId: {
-        type: String,
-        required:true
+        type: String
     },
     isbn: {
         type: String
